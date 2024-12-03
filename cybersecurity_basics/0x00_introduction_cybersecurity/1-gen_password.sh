@@ -1,2 +1,2 @@
 #!/bin/bash
-PASSWORD=$(head -c 16 /dev/urandom | base64 | tr -dc 'a-zA-Z0-9')
+tr -dc '[:alnum:]' < /dev/urandom | head -c "${1:-12}"
