@@ -1,2 +1,2 @@
 #!/bin/bash
-dig holbertonschool.com ANY +noall +answer
+dig $1 ANY +noall +answer
