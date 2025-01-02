@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo arp-scan $1
+sudo nmap -sn -PR $1
