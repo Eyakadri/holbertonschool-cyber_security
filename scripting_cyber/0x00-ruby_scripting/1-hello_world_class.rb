@@ -1,7 +1,11 @@
 #!/usr/bin/env ruby
 
 class HelloWorld
-    def print_hello
-      puts "Hello, World!"
-    end
+  def initialize
+    @message = "Hello, World!"
   end
+
+  def print_hello
+    puts @message
+  end
+end
