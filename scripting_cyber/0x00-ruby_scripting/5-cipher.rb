@@ -14,7 +14,7 @@ class CaesarCipher
 
   private
 
-  def cipher(msg, shift)
-    msg.tr("A-Za-z", ("A".."Z").to_a.rotate(shift).join + ("a".."z").to_a.rotate(shift).join)
+  def cipher(message, shift)
+    message.tr("A-Za-z", ("A".."Z").to_a.rotate(shift).join + ("a".."z").to_a.rotate(shift).join)
   end
 end
