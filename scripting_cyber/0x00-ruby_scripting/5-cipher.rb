@@ -4,12 +4,12 @@ class CaesarCipher
     @shift = shift % 26
   end
 
-  def encrypt(msg)
-    cipher(msg, @shift)
+  def encrypt(message)
+    cipher(message, @shift)
   end
 
-  def decrypt(msg)
-    cipher(msg, -@shift)
+  def decrypt(message)
+    cipher(message, -@shift)
   end
 
   private
