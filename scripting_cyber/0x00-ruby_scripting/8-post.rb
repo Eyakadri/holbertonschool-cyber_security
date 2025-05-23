@@ -13,7 +13,18 @@ def post_request(url, body_params = {})
   response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
     http.request(request)
   end
+
   puts "Response status: #{response.code} #{response.message}"
-  puts "Response body:"
-  puts JSON.pretty_generate(JSON.parse(response.body))
+  print "Response body:\n"
+
+  begin
+    json = JSON.parse(response.body)
+    if json.empty?
+      puts "{}"
+    else
+      puts JSON.pretty_generate(json)
+    end
+  rescue JSON::ParserError
+    puts response.body
+  end
 end
