@@ -1,30 +1,17 @@
 #!/usr/bin/env ruby
-require 'open-uri'
+require 'net/http'
 require 'json'
+require 'uri'
 
 def get_request(url)
-  begin
-    content = URI.open(url)
-    status_line = content.status.join(' ')
-    body = content.read
+  uri = URI(url)
+  reponse = Net::HTTP.get_response(uri)
 
-    puts "Response status: #{status_line}"
-    puts "Response body:"
+    status_code = reponse.code
+    status_message = reponse.message
+    response_body = JSON.parse(reponse.body)
 
-    if body.strip.empty?
-      puts "{}"
-    else
-      begin
-        json = JSON.parse(body)
-        puts JSON.pretty_generate(json)
-      rescue JSON::ParserError
-        puts "{}"
-      end
-    end
-  rescue OpenURI::HTTPError => e
-    status_line = e.io.status.join(' ')
-    puts "Response status: #{status_line}"
+    puts "Response status: #{status_code} #{status_message}"
     puts "Response body:"
-    puts "{}"
-  end
+    puts JSON.pretty_generate(response_body)
 end
