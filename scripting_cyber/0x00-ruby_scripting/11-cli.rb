@@ -29,7 +29,6 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-# Perform actions based on options
 if options[:add]
   File.open(TASK_FILE, 'a') { |file| file.puts(options[:add]) }
   puts "Task '#{options[:add]}' added."
@@ -39,6 +38,7 @@ elsif options[:list]
   if tasks.empty?
     puts "No tasks found."
   else
+    puts "Tasks:"
     tasks.each_with_index do |task, i|
       puts "#{i + 1}. #{task}"
     end
